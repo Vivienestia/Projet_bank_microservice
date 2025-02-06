@@ -8,21 +8,21 @@ import java.util.List;
 
 @RestController
 public class CustomerController {
-    private final CustomerRepository customerRepository;
+    private final CustomerService customerService;
 
-    public CustomerController(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
     @GetMapping("/customers")
-    public List<Customer> getCustomers()
+    public List<CustomerDTO> getCustomers()
     {
-        return customerRepository.findAll();
+        return customerService.findAll();
     }
 
     @GetMapping("/customer/{id}")
-    public Customer getCustomerById(@PathVariable Long id)
+    public CustomerDTO getCustomerById(@PathVariable Long id)
     {
-        return customerRepository.findById(id).orElse(null);
+        return customerService.findById(id);
     }
 }

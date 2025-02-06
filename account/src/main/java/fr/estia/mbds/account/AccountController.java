@@ -10,19 +10,19 @@ import java.util.List;
 @RestController
 public class AccountController {
 
-    private final AccountRepository accountRepository;
+    private final AccountService accountService;
     private final CustomerClient customerClient;
 
     @Autowired
-    public AccountController(AccountRepository accountRepository, CustomerClient customerClient) {
-        this.accountRepository = accountRepository;
+    public AccountController(AccountService accountService, CustomerClient customerClient) {
+        this.accountService = accountService;
         this.customerClient = customerClient;
     }
 
     @GetMapping("/accounts")
-    public List<Account> getAccounts()
+    public List<AccountDTO> getAccounts()
     {
-        List<Account> accounts = accountRepository.findAll();
+        List<AccountDTO> accounts = accountService.findAll();
         accounts.forEach(account -> {
             account.setCustomer(customerClient.getCustomerById(account.getCustomerId()));
         });
@@ -30,9 +30,9 @@ public class AccountController {
     }
 
     @GetMapping("/account/{id}")
-    public Account getAccountById(@PathVariable String id)
+    public AccountDTO getAccountById(@PathVariable String id)
     {
-        Account account = accountRepository.findById(id).orElse(null);
+        AccountDTO account = accountService.findById(id);
         if (account == null) {
             return null;
         }
