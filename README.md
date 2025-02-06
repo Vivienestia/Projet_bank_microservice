@@ -32,8 +32,8 @@ Ce projet illustre une architecture **microservices** développée avec **Spring
 Les services seront accessibles sur les ports suivants :
 - **Discovery Service** : `http://localhost:8761`
 - **Gateway API** : `http://localhost:8888`
-- **Customer Service** : `http://localhost:8081/customers`
-- **Account Service** : `http://localhost:8082/accounts`
+- **Customer Service** : `http://localhost:8082/customers`
+- **Account Service** : `http://localhost:8081/accounts`
 
 ---
 
@@ -56,7 +56,6 @@ Les services seront accessibles sur les ports suivants :
 - **Feign Clients** pour la communication entre services.
 - **Circuit Breaker (Resilience4J)** pour améliorer la résilience.
 - **Configuration centralisée** avec **Spring Cloud Config**.
-- **Sécurité** : Authentification et autorisation avec **Spring Security**.
 
 ---
 
